@@ -1,0 +1,39 @@
+<div class="columns is-multiline">
+
+    <% for(var i = 0; i < volcanoes.length; i++) { %>
+
+    <div class="column is-12">
+        <div class="title"><%= volcanoes[i].title %></div>
+        <div class="subtitle"><%= volcanoes[i].coord %></div>
+        <hr>
+
+        <div class="columns is-multiline">
+            <% for(var j = 0; j < volcanoes[i].properties.length; j++) { %>
+
+                <div class="column is-4">
+                    <div class="camera-details">
+                        <p><%= volcanoes[i].properties[j].imageTitle %></p>
+                        <p><%= volcanoes[i].properties[j].timestamp %></p>
+                        <div class="image volcano-image">
+                            <img src="<%= volcanoes[i].properties[j].imgThumbUrl %>">
+                        </div>
+                        <div class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <p class="image is-4by3">
+                                    <img src="<%= volcanoes[i].properties[j].imgFullUrl %>">
+                                </p>
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                    </div>
+                </div>
+
+            <% } %>
+        </div>
+
+    </div>
+
+    <% } %>
+
+</div>

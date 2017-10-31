@@ -13,31 +13,45 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-    res.render('index', {
-        'headerTitle': 'Sparrow'
-    });
-});
 
-app.get('/cameras/:volcanoId', function (req, res) {
+    var imagePrepend = 'http://images.geonet.org.nz/volcano/cameras/';
 
-    var volcanoId = req.params.volcanoId;
-
-    console.log(volcanoId);
-
-    var apiCall = syncrequest('GET', 'http://images.geonet.org.nz/volcano/cameras/'+volcanoId+'.json');
-
+    var apiCall = syncrequest('GET', 'http://images.geonet.org.nz/volcano/cameras/all.json');
     var apiResult = JSON.parse(apiCall.getBody('utf8'));
 
-    var volcanoTitle = apiResult.features;
+    var volcanoResults = [];
 
-    console.log(volcanoTitle);
+    for (var i = 0; i < 10; i++) {
+        try {
 
-    res.render('cameras', {
-        'headerTitle': 'Cameras'
+            var volcanoResult = {
+                'title' : apiResult[i].features[0]['volcano-title'][0],
+                'coord' : apiResult[i].features[0]['geometry'].coordinates[0] + ", " + apiResult[i].features[0]['geometry'].coordinates[1],
+                'properties' : []
+            };
+
+            for (var j = 0; j < 5; j++) {
+                try {
+                    var volcanoProperty = {
+                        'imageTitle' : apiResult[i].features[j].properties["title"],
+                        'timestamp' : apiResult[i].features[j].properties["latest-timestamp"],
+                        'imgThumbUrl' : imagePrepend + apiResult[i].features[j].properties["latest-image-thumb"],
+                        'imgFullUrl' : imagePrepend + apiResult[i].features[j].properties["latest-image-medium"]
+                    };
+                    volcanoResult.properties.push(volcanoProperty);
+                }
+                catch (err) { break; }
+            }
+
+            volcanoResults.push(volcanoResult);
+        } catch (err) { break; }
+    }
+
+    res.render('index', {
+        'headerTitle': 'Sparrow',
+        'volcanoes' : volcanoResults
     });
-
 });
-
 
 var server = app.listen(3000, function () {
 
