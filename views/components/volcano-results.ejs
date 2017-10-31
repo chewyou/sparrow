@@ -2,7 +2,7 @@
 
     <% for(var i = 0; i < volcanoes.length; i++) { %>
 
-    <div class="column is-12">
+    <div class="column is-12" id="<%= volcanoes[i].title %>">
         <div class="title"><%= volcanoes[i].title %></div>
         <div class="subtitle"><%= volcanoes[i].coord %></div>
         <hr>
