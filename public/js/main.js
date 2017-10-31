@@ -1,7 +1,24 @@
-//here I will add some functionality to handle the modals for each camera-details div
+(function () {
+})(window.jQuery);
 
-//volcano-image.sibling(modal).addClass('is-active')
+jQuery(function ($) {
+        "use strict";
 
-//and functionality for closing the modal too
+        function openModal() {
+            $('.volcano-image').on("click", function () {
+                $(this).next().addClass('is-active');
+            });
+        }
 
-// DONT FORGET TO ADD THIS FILE TO TEMPLATES
+        function closeModal() {
+            $('.modal-close').on("click", function () {
+                $(this).parent().removeClass('is-active');
+            });
+        }
+
+        $(document).ready(function () {
+            openModal();
+            closeModal();
+        });
+    }
+);
