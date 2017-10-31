@@ -35,7 +35,6 @@ app.get('/', function (req, res) {
                     var volcanoProperty = {
                         'imageTitle' : apiResult[i].features[j].properties["title"],
                         'timestamp' : apiResult[i].features[j].properties["latest-timestamp"],
-                        'imgThumbUrl' : imagePrepend + apiResult[i].features[j].properties["latest-image-thumb"],
                         'imgFullUrl' : imagePrepend + apiResult[i].features[j].properties["latest-image-medium"]
                     };
                     volcanoResult.properties.push(volcanoProperty);
