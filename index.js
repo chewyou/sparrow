@@ -18,7 +18,20 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/cameras', function (req, res) {
+app.get('/cameras/:volcanoId', function (req, res) {
+
+    var volcanoId = req.params.volcanoId;
+
+    console.log(volcanoId);
+
+    var apiCall = syncrequest('GET', 'http://images.geonet.org.nz/volcano/cameras/'+volcanoId+'.json');
+
+    var apiResult = JSON.parse(apiCall.getBody('utf8'));
+
+    var volcanoTitle = apiResult.features;
+
+    console.log(volcanoTitle);
+
     res.render('cameras', {
         'headerTitle': 'Cameras'
     });
