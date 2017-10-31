@@ -1,0 +1,20 @@
+{
+  "name": "falcon",
+  "version": "1.0.0",
+  "description": "A small, local node app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "fs": "^0.0.1-security",
+    "request": "^2.83.0",
+    "wait.for": "^0.6.6",
+    "sync-request": "^4.1.0",
+    "ejs": "^2.5.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Pickett",
+  "license": "ISC"
+}

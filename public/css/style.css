@@ -1,0 +1,14 @@
+@import url('sheep.css');
+
+img {
+    height: 450px;
+    width: 100%;
+}
+
+.content {
+    text-align: center;
+}
+
+.column.is-6-mobile {
+    float: left;
+}
