@@ -1,9 +1,5 @@
 var express = require('express');
 var app = express();
-var fs = require("fs");
-var request = require('request');
-var path = require('path');
-var wait = require('wait.for');
 var syncrequest = require('sync-request');
 
 app.use(express.static(__dirname + '/public'));
@@ -86,6 +82,6 @@ var server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log("Falcon is watching on http://%s:%s", host, port)
+    console.log("Sparrow is watching on http://%s:%s", host, port)
 
 });
