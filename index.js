@@ -64,29 +64,12 @@ app.get('/map', function (req, res) {
 
     for (var i = 0; i < 10; i++) {
         try {
-            var specialTitle = apiResult[i].features[0]['volcano-title'][0];
-            specialTitle = specialTitle.replace('/','');
-            specialTitle = specialTitle.replace(' ','');
 
             var volcanoResult = {
                 'title' : apiResult[i].features[0]['volcano-title'][0],
-                'specialTitle' : specialTitle,
                 'coordLong' : apiResult[i].features[0]['geometry'].coordinates[0],
-                'coordLat' : apiResult[i].features[0]['geometry'].coordinates[1],
-                'properties' : []
+                'coordLat' : apiResult[i].features[0]['geometry'].coordinates[1]
             };
-
-            for (var j = 0; j < 5; j++) {
-                try {
-                    var volcanoProperty = {
-                        'imageTitle' : apiResult[i].features[j].properties["title"],
-                        'timestamp' : apiResult[i].features[j].properties["latest-timestamp"],
-                        'imgFullUrl' : imagePrepend + apiResult[i].features[j].properties["latest-image-medium"]
-                    };
-                    volcanoResult.properties.push(volcanoProperty);
-                }
-                catch (err) { break; }
-            }
 
             volcanoResults.push(volcanoResult);
         } catch (err) { break; }
