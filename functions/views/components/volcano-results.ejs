@@ -2,10 +2,11 @@
 
     <% for(var i = 0; i < volcanoes.length; i++) { %>
 
-    <div class="column is-12" id="<%= volcanoes[i].title %>">
-        <div class="title"><%= volcanoes[i].title %></div>
-        <div class="subtitle is-6">Long:<%= volcanoes[i].coordLong %>, Lat:<%= volcanoes[i].coordLat %></div>
-        <hr>
+    <div class="column is-12 volcano-info-box" id="<%= volcanoes[i].title %>">
+        <div class="title is-4">
+            <div class="volcano-title"><%= volcanoes[i].title %></div>
+        </div>
+        <!--<div class="subtitle is-6">Long:<%= volcanoes[i].coordLong %>, Lat:<%= volcanoes[i].coordLat %></div>-->
 
         <div class="columns is-multiline">
             <% for(var j = 0; j < volcanoes[i].properties.length; j++) { %>

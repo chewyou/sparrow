@@ -14,4 +14,4 @@ mix.setPublicPath(
 
 mix.js("src/js/main.js", "js/main.js");
 
-mix.sass("src/css/style.css", "css/style.css");
+mix.sass("src/sass/style.scss", "css/style.css");
