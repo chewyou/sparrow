@@ -4,7 +4,6 @@ export default function () {
     $(window).load(() => {
 
         $('.volcano-image').on("click", function () {
-            console.log("open");
             $(this).next().addClass('is-active');
         });
 
