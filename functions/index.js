@@ -1,14 +1,14 @@
-var express = require('express');
-var app = express();
+const functions = require('firebase-functions');
+const express = require('express');
 var syncrequest = require('sync-request');
 
-app.use(express.static(__dirname + '/public'));
+const app = express();
 
 app.engine('.ejs', require('ejs').__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function (req, res) {
+app.get('/home', function (req, res) {
 
     var imagePrepend = 'http://images.geonet.org.nz/volcano/cameras/';
 
@@ -49,6 +49,7 @@ app.get('/', function (req, res) {
     });
 });
 
+
 app.get('/map', function (req, res) {
 
     var imagePrepend = 'http://images.geonet.org.nz/volcano/cameras/';
@@ -77,11 +78,5 @@ app.get('/map', function (req, res) {
     });
 });
 
-var server = app.listen(3000, function () {
 
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log("Sparrow is watching on http://%s:%s", host, port)
-
-});
+exports.app = functions.https.onRequest(app);

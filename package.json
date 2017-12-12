@@ -4,16 +4,36 @@
   "description": "A small, local node app",
   "main": "index.js",
   "dependencies": {
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
     "fs": "^0.0.1-security",
+    "jquery": "^3.2.1",
     "request": "^2.83.0",
-    "wait.for": "^0.6.6",
     "sync-request": "^4.1.0",
-    "ejs": "^2.5.7"
+    "wait.for": "^0.6.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "autoprefixer": "7.1.2",
+    "babel-eslint": "^7.1.1",
+    "css-mqpacker": "^5.0.1",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "expose-loader": "^0.7",
+    "laravel-mix": "0.8.8",
+    "path": "^0.12.7",
+    "postcss-flexbugs-fixes": "*",
+    "sass-lint": "^1.10.2",
+    "webpack": "^2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js --watch",
+    "build": "webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "package": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "lint-js": "node_modules/.bin/eslint src/js",
+    "lint-sass": "node_modules/.bin/sass-lint -v"
   },
   "author": "Ben Pickett",
   "license": "ISC"

@@ -1,0 +1,29 @@
+{
+  "hosting": {
+    "public": "public",
+    "redirects": [ {
+      "source" : "/",
+      "destination" : "/home",
+      "type" : 301
+    }, {
+      "source" : "/firebase/*",
+      "destination" : "https://firebase.google.com",
+      "type" : 302
+    } ],
+    "rewrites": [
+      {
+        "source": "/home",
+        "function": "app"
+      },
+      {
+        "source": "/map",
+        "function": "app"
+      }
+    ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
