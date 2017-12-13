@@ -1,31 +1,40 @@
 <div class="header">
     <div class="columns">
-        <div class="column is-2-desktop is-3-tablet is-6-mobile">
-            <div class="title"><%= headerTitle %></div>
+        <div class="column is-10-desktop is-9-tablet">
+            <div class="title">
+                <a href="/home">
+                    <span class="title-text"><%= headerTitle %></span>
+                    <img src="img/sparrow-icon.png">
+                </a>
+            </div>
         </div>
-        <div class="column ">
+        <div class="column is-2-desktop is-3-tablet is-hidden-mobile">
             <div class="nav">
                 <div class="nav-menu">
                     <a href="/home" class="nav-item">
-                        Home
+                        <i class="fa fa-fw fa-home"></i>
+                        <span>Home</span>
                     </a>
                     <a href="/map" class="nav-item">
-                        Map
+                        <i class="fa fa-fw fa-map-marker"></i>
+                        <span>Map</span>
                     </a>
                 </div>
             </div>
-            <div class="mobile-nav">
+        </div>
+        <div class="mobile-nav">
 
-                <i class="fa fa-fw fa-bars"></i>
+            <i class="fa fa-fw fa-bars"></i>
 
-                <div class="nav-menu">
-                    <a href="/home" class="nav-item">
-                        Home
-                    </a>
-                    <a href="/map" class="nav-item">
-                        Map
-                    </a>
-                </div>
+            <div class="nav-menu">
+                <a href="/home" class="nav-item">
+                    <i class="fa fa-fw fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/map" class="nav-item">
+                    <i class="fa fa-fw fa-map-marker"></i>
+                    <span>Map</span>
+                </a>
             </div>
         </div>
     </div>
