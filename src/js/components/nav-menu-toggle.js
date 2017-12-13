@@ -13,7 +13,6 @@ export default function () {
                     $('.nav-menu').removeClass('is-open');
                 }
             }
-        });
-
+        })
     });
 }

@@ -10,37 +10,39 @@
 </head>
 <body>
 
-<div class="container">
+    <div class="loading-cover"></div>
 
-    <div class="section section-header">
-        <% include components/header %>
+    <div class="container">
+
+        <div class="section section-header">
+            <% include components/header %>
+        </div>
+
+        <div class="section section-content">
+            <div id="map" style="height: 500px; width: 100%;"></div>
+        </div>
+
     </div>
 
-    <div class="section section-content">
-        <div id="map" style="height: 500px; width: 100%;"></div>
-    </div>
+    <script>
+        function initMap() {
+            var center = {lat: <%= volcanoes[0].coordLat %>, lng: <%= volcanoes[0].coordLong %>};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: center
+            });
 
-</div>
-
-<script>
-    function initMap() {
-        var center = {lat: <%= volcanoes[0].coordLat %>, lng: <%= volcanoes[0].coordLong %>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: center
-        });
-
-        <% for(var i = 0; i < volcanoes.length; i++) { %>
-        var marker = new google.maps.Marker({
-            position: {lat: <%= volcanoes[i].coordLat %>, lng: <%= volcanoes[i].coordLong %>},
-            map: map
-        });
-        <% } %>
-    }
-</script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIX19cHpk1O1dp4kc7is2LKfx9F3GVbtg&callback=initMap">
-</script>
+            <% for(var i = 0; i < volcanoes.length; i++) { %>
+            var marker = new google.maps.Marker({
+                position: {lat: <%= volcanoes[i].coordLat %>, lng: <%= volcanoes[i].coordLong %>},
+                map: map
+            });
+            <% } %>
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIX19cHpk1O1dp4kc7is2LKfx9F3GVbtg&callback=initMap">
+    </script>
 
 </body>
 </html>
