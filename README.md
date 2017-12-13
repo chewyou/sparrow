@@ -22,3 +22,5 @@ applications such as this.
 ### APIs Used
 [GeoNet](https://www.geonet.org.nz/data/types/camera)
 
+
+`firebase serve --only functions,hosting` to serve locally
