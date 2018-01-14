@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: peavers/docker-firebase-ember:latest
+    steps:
+      - checkout
+      - run:
+          name: Installing Libraries
+          command: npm install
