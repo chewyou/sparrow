@@ -17,10 +17,49 @@ jobs:
           paths:
             - node_modules
 
+  lint_with_webpack:
+    <<: *DEFAULT
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Running Webpack
+          command: npm run build --prod
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - save_cache:
+          key: webpack-cache-{{ checksum "package.json" }}
+          paths:
+            - public
+
+  deploy_to_firebase:
+      <<: *DEFAULT
+      steps:
+        - checkout
+        - restore_cache:
+            key: dependency-cache-{{ checksum "package.json" }}
+        - restore_cache:
+            key: webpack-cache-{{ checksum "package.json" }}
+        - run:
+            name: Deploy
+            command: firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
 workflows:
   version: 2
   build:
     jobs:
-      - build_environment
+      - build_environment:
+          filters:
+            branches:
+              only: master
+      - lint_with_webpack:
+          requires:
+            - build_environment
+      - deploy_to_firebase:
+          requires:
+            - lint_with_webpack
 
 
