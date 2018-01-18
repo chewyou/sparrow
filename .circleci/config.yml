@@ -48,6 +48,9 @@ jobs:
             name: Setup for deployment
             command: npm install -g
         - run:
+            name: Install firebase-admin
+            command: npm install firebase-admin
+        - run:
             name: Deploy
             command: firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
