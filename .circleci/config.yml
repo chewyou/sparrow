@@ -37,6 +37,7 @@ jobs:
 
   deploy_to_firebase:
       <<: *DEFAULT
+      working_directory: functions
       steps:
         - checkout
         - restore_cache:
@@ -45,7 +46,7 @@ jobs:
             key: webpack-cache-{{ checksum "package.json" }}
         - run:
             name: Setup for deployment
-            command: npm i functions/
+            command: npm i
         - run:
             name: Deploy
             command: firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
