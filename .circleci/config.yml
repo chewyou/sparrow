@@ -46,9 +46,9 @@ jobs:
             key: webpack-cache-{{ checksum "package.json" }}
         - run:
             name: Setup for deployment
-            command: npm install -g
+            command: npm install
         - run:
-            name: Install firebase-admin
+            name: Install firebase-functions firebase-admin
             command: npm install firebase-admin
         - run:
             name: Deploy
