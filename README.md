@@ -1,6 +1,9 @@
 # sparrow
 node js project
 
+Current Build
+[![CircleCI](https://circleci.com/gh/chewyou/sparrow/tree/master.svg?style=svg)](https://circleci.com/gh/chewyou/sparrow/tree/master)
+
 
 ## Installation
 Run `npm i` to install dependencies

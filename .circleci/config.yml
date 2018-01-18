@@ -47,6 +47,17 @@ jobs:
             name: Deploy
             command: firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
+  commit_changes:
+      <<: *DEFAULT
+      steps:
+        - checkout
+        - restore_cache:
+            key: webpack-cache-{{ checksum "package.json" }}
+        - run: git config --global user.name "CircleCI"
+        - run: git config --global user.email "benspickett@gmail.com"
+        - run: |
+            git add . && git commit --allow-empty -m "* Commiting webpack changes [ci skip]" && git push origin master -f
+
 workflows:
   version: 2
   build:
