@@ -43,6 +43,8 @@ jobs:
             key: dependency-cache-{{ checksum "package.json" }}
         - restore_cache:
             key: webpack-cache-{{ checksum "package.json" }}
+        #This deployment is using the functions folder, so it is required to npm install
+        #inside the functions folder so the firebase deploy is successful
         - run:
             name: Setup for deployment
             command: npm --prefix ./functions/ install ./functions/
