@@ -44,8 +44,13 @@ jobs:
         - restore_cache:
             key: webpack-cache-{{ checksum "package.json" }}
         - run:
+            name: Setup for deployment
+            command: npm i functions/
+        - run:
             name: Deploy
             command: firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
+
 
   commit_changes:
       <<: *DEFAULT
@@ -57,6 +62,25 @@ jobs:
         - run: git config --global user.email "benspickett@gmail.com"
         - run: |
             git add . && git commit --allow-empty -m "* Commiting webpack changes [ci skip]" && git push origin master -f
+
+  notify_user:
+      <<: *DEFAULT
+      steps:
+        - run:
+            name: Send Pushbullet Notification
+            #curl -H 'Content-Type: application/json' -H 'Access-Token: <access-token-here>'
+            #--data '{"body": "Message body", "title": "Notification title", "type": "note"}'
+            #-X POST <notification-service-api-url>
+            command: bash -c "$PUSHBULLET_NOTIFY_COMMAND"
+        - run:
+            name: Send Slack Notification
+            #curl -X POST -H 'Content-type: application/json'
+            #--data '{"attachments": [{"fallback": "Success. All builds passed.
+            #Deployment complete", "color": "#36a64f", "author_name": "CircleCI", "text": "Success.
+            #All builds passed. Deployment complete", "image_url": "http://my-website.com/path/to/image.jpg",
+            #"thumb_url": "http://example.com/path/to/thumb.png", "ts": 123456789 }]}'
+            #https://hooks.slack.com/services/<api-token>
+            command: bash -c "$SLACK_NOTIFY_COMMAND"
 
 workflows:
   version: 2
@@ -72,5 +96,8 @@ workflows:
       - deploy_to_firebase:
           requires:
             - lint_with_webpack
-
+      - notify_user:
+          requires:
+            - commit_changes
+            - deploy_to_firebase
 

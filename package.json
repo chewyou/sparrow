@@ -7,6 +7,7 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "fs": "^0.0.1-security",
+    "functions": "file:functions",
     "jquery": "^3.2.1",
     "request": "^2.83.0",
     "sync-request": "^4.1.0",
