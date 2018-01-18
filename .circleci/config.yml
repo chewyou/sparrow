@@ -50,8 +50,6 @@ jobs:
             name: Deploy
             command: firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
-
-
   commit_changes:
       <<: *DEFAULT
       steps:
@@ -96,8 +94,11 @@ workflows:
       - deploy_to_firebase:
           requires:
             - lint_with_webpack
-      - notify_user:
-          requires:
-            - commit_changes
-            - deploy_to_firebase
+#      - commit_changes:
+#          requires:
+#            - lint_with_webpack
+#      - notify_user:
+#          requires:
+#            - commit_changes
+#            - deploy_to_firebase
 
