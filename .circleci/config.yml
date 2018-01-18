@@ -45,7 +45,7 @@ jobs:
             key: webpack-cache-{{ checksum "package.json" }}
         - run:
             name: Setup for deployment
-            command:  npm --prefix ./functions/ install ./functions/
+            command: npm --prefix ./functions/ install ./functions/
         - run:
             name: Deploy
             command: firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
